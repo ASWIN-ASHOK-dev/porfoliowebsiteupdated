@@ -1,0 +1,21 @@
+Missing information to complete migration (fill these in):
+
+- Preferred display name: `Aswin Ashok` (already applied).
+-- Passport/profile image: please add `public/myphoto.jpg` (recommended) or `importantfiles/myphoto.jpg`. If you upload to `importantfiles/` tell me and I'll copy it into `public/` so the site can serve it at `/myphoto.jpg`.
+- Project links (provide repo/demo URLs if available):
+  - DocPilot — provide repo or demo URL (currently listed, no public link).
+  - TinkerTiles — provide repo or demo URL if available.
+  - Soft Landing Simulator — you said you'll add this.
+  - Maths Sim (Android) — you said you'll add this.
+  - Hospital Management System — repo link exists: https://github.com/ASWIN-ASHOK-dev/HospitalManagement (already linked).
+- Education: confirm start/end years if different from resume (currently set to 2025 – Present for both BTech and BS).
+- Experience: confirm dates/locations for entries if you want different wording.
+- Contact email confirmed as `aswinashokdevofficial@gmail.com` (updated in site).
+- Social links confirmed and updated (LinkedIn, GitHub, X, Instagram, Itch.io, LeetCode). Confirm removal of Discord.
+- Resume/CV: you provided `importantfiles/Aswin_Ashok_ATS_Resume.docx` — if you prefer a PDF copy, add `importantfiles/aswinashokresumeats.pdf` or similar.
+- Any additional wording tweaks for About/CV pages.
+
+Notes:
+- Store section removed per request.
+- Projects page populated from your resume. Review `src/pages/projects.astro` and `src/pages/cv.astro` and tell me any edits.
+- Current status: the site now uses `public/myphoto.jpg` for the profile image and Open Graph image.

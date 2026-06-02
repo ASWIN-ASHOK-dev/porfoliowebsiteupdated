@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+---
+
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+  <div class="mb-8 flex flex-wrap items-center gap-3">
+    <div class="text-3xl w-full font-bold">Resume</div>
+    <a
+      href="/ats-resume.docx"
+      download="Aswin_Ashok_ATS_Resume.docx"
+      class="btn btn-primary btn-sm"
+    >
+      Download ATS Resume
+    </a>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Profile</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    First-year BTech (Computer Science and Business Systems) student at Model Engineering College and concurrent BS Data Science student at IIT Madras. Six years of hands-on Unity game development experience with a strong foundation in systems programming, low-level architecture, and data-driven tooling. Practical experience with Python, C#, Linux systems, and AI/ML pipelines. I enjoy rapid prototyping, building game systems, and creating reliable tooling.
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="BTech — Computer Science and Business Systems"
+      subtitle="2025 – Present at Model Engineering College, Thrikkakara, India"
+    />
+    <TimeLineElement
+      title="BS — Data Science and Applications"
+      subtitle="2025 – Present at Indian Institute of Technology (IIT) Madras"
+    />
+    <TimeLineElement
+      title="Class XII (CBSE)"
+      subtitle="2013 – 2023 at Believers Church English Medium School, Alappuzha — Score: 96.33%"
+    />
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Experience</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    <TimeLineElement
+      title="Research Sub-Lead"
+      subtitle="2026 – Present at National Student Data Corps (NSDC MEC), Model Engineering College"
+    >
+      Lead research initiatives within the student development council, coordinating literature reviews and technical investigations. Collaborate with team members to produce structured research outputs for club projects and events.
+    </TimeLineElement>
+    <TimeLineElement
+      title="Game Development Workshop Facilitator"
+      subtitle="2025 — Game Developers Club (GDC MEC)"
+    >
+      Facilitated a Unity game development workshop covering optimization strategies, DOTS/ECS concepts, and practical workflows for beginners.
+    </TimeLineElement>
+    <TimeLineElement
+      title="Executive Member"
+      subtitle="2025 – Present at NSDC MEC | FOSS MEC | GDC MEC"
+    >
+      Organized seminars and mentored junior students in web development and open-source contributions.
+    </TimeLineElement>
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Skills</div>
+  </div>
+
+  <ul class="list-disc md:columns-3 columns-2 mx-6">
+    <li>Python</li>
+    <li>C# (Unity)</li>
+    <li>Java</li>
+    <li>C</li>
+    <li>JavaScript / HTML / CSS</li>
+    <li>MySQL</li>
+    <li>Unity (DOTS, ECS, Burst)</li>
+    <li>LangChain, Ollama, ChromaDB</li>
+    <li>Docker, Git, CI/CD</li>
+    <li>Linux (Arch, Ubuntu)</li>
+    <li>Krita (2D assets)</li>
+    <li>Data & ML pipelines</li>
+  </ul>
+</BaseLayout>

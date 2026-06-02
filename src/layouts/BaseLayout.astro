@@ -1,0 +1,112 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SideBar from "../components/SideBar.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
+
+const {
+  image,
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  includeSidebar = true,
+  sideBarActiveItemID,
+  ogType,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="lofi">
+  <head>
+    <BaseHead title={title} description={description} image={image} ogType={ogType} />
+    <script is:inline>
+      if (!window.__themeControllerInitialized) {
+        window.__themeControllerInitialized = true;
+
+        const THEME_KEY = "site-theme";
+        const LIGHT_THEME = "lofi";
+        const DARK_THEME = "dark";
+
+        const getStoredTheme = () => {
+          try {
+            const storedTheme = localStorage.getItem(THEME_KEY);
+            if (storedTheme === LIGHT_THEME || storedTheme === DARK_THEME) {
+              return storedTheme;
+            }
+          } catch (error) {
+            return null;
+          }
+
+          return null;
+        };
+
+        const syncToggleButtons = (theme) => {
+          document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+            const isDark = theme === DARK_THEME;
+            button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+            button.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+
+            button.querySelectorAll("[data-theme-sun]").forEach((icon) => {
+              icon.classList.toggle("hidden", isDark);
+            });
+
+            button.querySelectorAll("[data-theme-moon]").forEach((icon) => {
+              icon.classList.toggle("hidden", !isDark);
+            });
+          });
+        };
+
+        const applyTheme = (theme, persist = true) => {
+          document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.style.colorScheme = theme === DARK_THEME ? "dark" : "light";
+
+          if (persist) {
+            try {
+              localStorage.setItem(THEME_KEY, theme);
+            } catch (error) {
+              // ignore storage errors
+            }
+          }
+
+          syncToggleButtons(theme);
+        };
+
+        const readTheme = () => getStoredTheme() ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? DARK_THEME : LIGHT_THEME);
+        const syncTheme = () => applyTheme(readTheme(), false);
+
+        syncTheme();
+
+        document.addEventListener("astro:page-load", syncTheme);
+
+        document.addEventListener("click", (event) => {
+          const toggleButton = event.target instanceof Element ? event.target.closest("[data-theme-toggle]") : null;
+
+          if (!toggleButton) {
+            return;
+          }
+
+          const currentTheme = document.documentElement.getAttribute("data-theme") || LIGHT_THEME;
+          applyTheme(currentTheme === DARK_THEME ? LIGHT_THEME : DARK_THEME, true);
+        });
+      }
+    </script>
+    {TRANSITION_API && <ViewTransitions />}
+  </head>
+  <body>
+    <div class="bg-base-100 drawer lg:drawer-open">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content bg-base-100">
+        <Header title={SITE_TITLE} />
+        <div class="md:flex md:justify-center">
+          <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
+            <slot />
+          </main>
+        </div>
+        <Footer />
+      </div>
+      {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
+    </div>
+  </body>
+</html>
